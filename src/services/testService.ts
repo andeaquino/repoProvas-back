@@ -1,7 +1,7 @@
 import { getRepository } from "typeorm";
 import Test from "../entities/Test";
 
-interface CreateTest {
+interface TestCreate {
     name: string;
     category_id: number;
     professor_id: number;
@@ -9,10 +9,13 @@ interface CreateTest {
     pdf: string;
 }
 
-async function createTest(test: CreateTest) {
-  console.log(test);
+async function createTest(test: TestCreate) {
+    const existingTask = await getRepository(Test).find({ name: test.name });
+
+    if (existingTask.length !== 0) return false;
+  
     await getRepository(Test).insert(test);
-  return true;
+    return true;
 }
 
 export { createTest };

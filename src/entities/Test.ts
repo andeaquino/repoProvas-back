@@ -14,27 +14,27 @@ export default class Test {
   @Column()
   category_id: number;
 
+  @Column()
+  professor_id: number;
+  
+  @Column()
+  subject_id: number;
+  
+  @Column()
+  pdf: string;
+
   @OneToOne(() => Category)
   @JoinColumn({ name: 'category_id'})
   category: Category;
-
-  @Column()
-  professor_id: number;
     
   @OneToOne(() => Professor)
   @JoinColumn({ name: 'professor_id'})
   professor: Professor;
-
-  @Column()
-  subject_id: number;
     
   @OneToOne(() => Subject)
   @JoinColumn({ name: 'subject_id'})
   subject: Subject;
     
-  @Column()
-  pdf: string;
-
   getTask() {
     return {
       testId: this.id,
