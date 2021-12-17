@@ -3,7 +3,7 @@ import Category from "./Category";
 import Professor from "./Professor";
 import Subject from "./Subject";
 
-@Entity("subjects")
+@Entity("tests")
 export default class Test {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,13 +11,22 @@ export default class Test {
   @Column()
   name: string;
 
+  @Column()
+  category_id: number;
+
   @OneToOne(() => Category)
   @JoinColumn({ name: 'category_id'})
   category: Category;
+
+  @Column()
+  professor_id: number;
     
   @OneToOne(() => Professor)
   @JoinColumn({ name: 'professor_id'})
   professor: Professor;
+
+  @Column()
+  subject_id: number;
     
   @OneToOne(() => Subject)
   @JoinColumn({ name: 'subject_id'})
