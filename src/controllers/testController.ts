@@ -20,7 +20,13 @@ async function createTest (req: Request, res: Response) {
 }
 
 async function findAvailableTestParams(req: Request, res: Response) {
-  
+    try {
+      const params = await testService.findAvailableTestParams();
+      res.send(params);
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
 }
 
-export { createTest };
+export { createTest, findAvailableTestParams };

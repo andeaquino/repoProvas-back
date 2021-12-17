@@ -1,13 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
 import Subject from "./Subject";
 
-@Entity("subjects")
+@Entity("professors")
 export default class Professor {
   @PrimaryGeneratedColumn()
   id: number;
   
   @Column()
   name: string;
+
+  @Column({name: 'subject_id'})
+  subjectId: number;
 
   @OneToOne(() => Subject)
   @JoinColumn({ name: 'subject_id'})

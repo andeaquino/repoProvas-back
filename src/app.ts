@@ -15,6 +15,7 @@ app.use(express.json());
 
 app.get("/users", userController.getUsers);
 app.post("/test", testController.createTest);
+app.get('/test/params', testController.findAvailableTestParams);
 
 export async function init () {
   await connectDatabase();

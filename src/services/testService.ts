@@ -4,7 +4,6 @@ import Category from "../entities/Category";
 import Subject from "../entities/Subject";
 import Professor from "../entities/Professor";
 
-
 interface TestCreate {
     name: string;
     category_id: number;
