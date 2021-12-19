@@ -31,4 +31,9 @@ async function findAvailableTestParams () {
     };
 }
 
-export { createTest, findAvailableTestParams };
+async function findProfessorsWithTests() {
+    const professors = await getRepository(Professor).find({ relations: ['test'] });
+    return professors;
+}
+
+export { createTest, findAvailableTestParams, findProfessorsWithTests };

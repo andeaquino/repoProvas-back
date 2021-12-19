@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne } from "typeorm";
 import Category from "./Category";
 import Professor from "./Professor";
 import Subject from "./Subject";
@@ -23,15 +23,15 @@ export default class Test {
   @Column()
   pdf: string;
 
-  @OneToOne(() => Category)
+  @OneToOne(() => Category, { eager: true })
   @JoinColumn({ name: 'category_id'})
   category: Category;
     
-  @OneToOne(() => Professor)
+  @ManyToOne(() => Professor, professor => professor.id, { eager: true })
   @JoinColumn({ name: 'professor_id'})
   professor: Professor;
     
-  @OneToOne(() => Subject)
+  @ManyToOne(() => Subject, subject => subject.id, { eager: true })
   @JoinColumn({ name: 'subject_id'})
   subject: Subject;
     

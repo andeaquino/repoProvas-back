@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import Subject from "./Subject";
+import Test from "./Test";
 
 @Entity("professors")
 export default class Professor {
@@ -15,6 +16,9 @@ export default class Professor {
   @OneToOne(() => Subject)
   @JoinColumn({ name: 'subject_id'})
   subject: Subject;
+
+  @OneToMany(() => Test, test => test.professor)
+  test: Test[];
 
   getTask() {
     return {

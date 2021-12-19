@@ -29,4 +29,14 @@ async function findAvailableTestParams(req: Request, res: Response) {
     }
 }
 
-export { createTest, findAvailableTestParams };
+async function findProfessorsWithTests(req: Request, res: Response) {
+  try {
+      const professors = await testService.findProfessorsWithTests();
+      res.send(professors);
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+}
+
+export { createTest, findAvailableTestParams, findProfessorsWithTests };
