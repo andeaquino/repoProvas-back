@@ -15,6 +15,7 @@ app.use(express.json());
 app.post("/test", testController.createTest);
 app.get('/test/params', testController.findAvailableTestParams);
 app.get('/test/professors', testController.findProfessorsWithTests);
+app.get('/test/subjects', testController.findSubjectsWithTests);
 
 export async function init () {
   await connectDatabase();

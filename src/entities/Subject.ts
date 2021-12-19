@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import Period from "./Period";
+import Test from "./Test";
 
 @Entity("subjects")
 export default class Subject {
@@ -12,9 +13,12 @@ export default class Subject {
   @Column({ name: 'period_id'})
   periodId: number;
 
-  @OneToOne(() => Period)
+  @OneToOne(() => Period, {eager: true})
   @JoinColumn({ name: 'period_id'})
   period: Period;
+
+  @OneToMany(() => Test, test => test.professor)
+  test: Test[];
 
   getTask() {
     return {
