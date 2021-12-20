@@ -65,3 +65,45 @@ describe("POST /test", () => {
   });
 });
 
+describe("GET /test/professors", () => {
+  it("should answer with list of professors, their tests and status 200", async () => {
+    const params = await createTestParams();
+    const body = generateTestBody(params);
+    await createTest(body);
+
+    const response = await supertest(app).get("/test/professors");
+    
+    expect(response.body[0]).toEqual(
+        expect.objectContaining({
+          id: params.professor.id,
+          name: params.professor.name,
+          subjectId: params.subject.id,
+          test: expect.any(Array)
+        })
+    );
+
+    expect(response.status).toBe(200);
+  });
+});
+
+describe("GET /test/subjects", () => {
+  it("should answer with list of subjects, their tests and status 200", async () => {
+    const params = await createTestParams();
+    const body = generateTestBody(params);
+    await createTest(body);
+
+    const response = await supertest(app).get("/test/subjects");
+    
+    expect(response.body[0]).toEqual(
+        expect.objectContaining({
+          id: params.subject.id,
+          name: params.subject.name,
+          periodId: params.subject.periodId,
+          test: expect.any(Array)
+        })
+    );
+
+    expect(response.status).toBe(200);
+  });
+});
+

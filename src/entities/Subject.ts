@@ -13,7 +13,7 @@ export default class Subject {
   @Column({ name: 'period_id'})
   periodId: number;
 
-  @OneToOne(() => Period, {eager: true})
+  @OneToOne(() => Period)
   @JoinColumn({ name: 'period_id'})
   period: Period;
 

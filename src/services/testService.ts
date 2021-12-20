@@ -36,4 +36,9 @@ async function findProfessorsWithTests() {
     return professors;
 }
 
-export { createTest, findAvailableTestParams, findProfessorsWithTests };
+async function findSubjectsWithTests() {
+    const subjects = await getRepository(Subject).find({ relations: ['test'] });
+    return subjects;
+}
+
+export { createTest, findAvailableTestParams, findProfessorsWithTests, findSubjectsWithTests };
