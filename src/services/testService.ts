@@ -37,7 +37,7 @@ async function findProfessorsWithTests() {
 }
 
 async function findSubjectsWithTests() {
-    const subjects = await getRepository(Subject).find({ relations: ['test'] });
+    const subjects = await getRepository(Subject).find({ relations: ['test', 'period'] });
     return subjects;
 }
 
